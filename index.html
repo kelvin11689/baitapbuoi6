@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>buoi6</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	So A: <input id="soa" placeholder="Nhap So A"><br><br>
+	So B: <input id="sob" placeholder="Nhap So B"><br><br>
+	Phep Tinh: <input id="pt" placeholder="Nhap Phep Tinh"><br><br>
+	Ket Qua: <input id="kq" placeholder="Ket Qua" readonly><br><br>
+	
+	<button id="btntinh">Tinh</button><br><br>
+	<div style="width: 300px;height: 50px;">
+		<button id="tru" style="float: left;width: 56px;height: 56px">-</button>
+			<div id="tanggiam">
+				<input id="macdinh" value="1" readonly style="float: left;width: 50px;height: 50px;text-align: center;">
+			</div>
+		<button id="cong" style="float: left;width: 56px;height: 56px">+</button>
+	</div>
+	
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script>
+		$(document).ready(function(){
+			
+			/*may tinh*/
+			$('#btntinh').click(function(){
+				var soa = $('#soa').val();
+				var sob = $('#sob').val();
+				var pt = $('#pt').val();
+				if(sob==0){
+					alert('So B Khac 0')
+					return false
+				}
+				if(isNaN(soa)||isNaN(sob)){
+					alert('Vui Long Nhap So');
+					return false
+				}
+				if(soa==''||sob==''||pt==''){
+					alert('Chua Nhap Phep Tinh Hoac So A,B')
+					return false
+				}
+				if(pt=='+'){
+					var cong = parseFloat(soa)+parseFloat(sob);
+					$('#kq').val(cong);
+				}
+				if(pt=='-'){
+					var tru = parseFloat(soa)-parseFloat(sob);
+					$('#kq').val(tru);
+				}
+				if(pt=='*'){
+					var nhan = parseFloat(soa)*parseFloat(sob);
+					$('#kq').val(nhan);
+				}
+				if(pt=='/'){
+					var chia = parseFloat(soa)/parseFloat(sob);
+					$('#kq').val(chia);
+				}
+				
+				
+			});
+
+			/*Tang Giam*/ 
+			var n = 1;
+			
+			$('#cong').click(function(){
+				$('#macdinh').val(++n)
+
+			});
+			$('#tru').click(function(){
+				if(n==1){
+					return n;
+				}
+				$('#macdinh').val(--n)
+
+			});
+
+
+
+		});
+	</script>
+	
+</html>
